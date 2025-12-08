@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#root {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: "Chokokutai", system-ui;
+}
+.links{
+    display: flex;
+    gap: 15px;
+}
+.links a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
