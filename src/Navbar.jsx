@@ -5,9 +5,9 @@ return(
     <nav>
     <div className="navbar">
     <h1>Manga-bibl</h1>    <div className="links">
-        <a href="/"><i class="fa-regular fa-house"></i></a>
-        <a href="/favorites"><i class="fa-regular fa-heart"></i></a>
-        <a href="/profile"><i class="fa-solid fa-user-ninja"></i></a>
+        <a href="/"><i className="fa-regular fa-house"></i></a>
+        <a href="/favorites"><i className="fa-regular fa-heart"></i></a>
+        <a href="/profile"><i className="fa-solid fa-user-ninja"></i></a>
     </div>
     </div>
     </nav>

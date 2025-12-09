@@ -1,6 +1,41 @@
 import "./App.css";
+import { useState } from "react";
+
+const API_BASE_URL = "https://mymangapp-backend-production.up.railway.app";
 
 function App() {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    if (!query.trim()) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/manga?query=${encodeURIComponent(query)}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Error al llamar a la API");
+      }
+
+      const data = await response.json();
+      setResults(data);
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -13,7 +48,8 @@ function App() {
         }}
       >
         <div className="grid"></div>
-        <div id="poda">
+
+        <form id="poda" onSubmit={handleSearch}>
           <div className="glow"></div>
           <div className="darkBorderBg"></div>
           <div className="darkBorderBg"></div>
@@ -28,11 +64,17 @@ function App() {
               type="text"
               name="text"
               className="input"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
             <div id="input-mask"></div>
             <div id="pink-mask"></div>
 
-            <div id="search-icon">
+            <div
+              id="search-icon"
+              onClick={handleSearch}
+              style={{ cursor: "pointer" }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -65,6 +107,46 @@ function App() {
               </svg>
             </div>
           </div>
+        </form>
+
+        <div
+          className="resultados"
+          style={{ marginTop: "40px", width: "100%", maxWidth: "900px" }}
+        >
+          <h2 style={{ color: "white" }}>Mangas encontrados</h2>
+
+          {loading && (
+            <p style={{ textAlign: "center", color: "#aaa" }}>
+              Buscando mangas...
+            </p>
+          )}
+
+          {error && (
+            <p style={{ textAlign: "center", color: "tomato" }}>
+              Error: {error}
+            </p>
+          )}
+
+          <ul className="results-list">
+            {results.map((manga, index) => (
+              <li
+                key={manga.malId ?? `${manga.title}-${index}`}
+                className="result-item"
+              >
+                {manga.imageUrl && (
+                  <img
+                    src={manga.imageUrl}
+                    alt={manga.title}
+                    className="manga-image"
+                  />
+                )}
+                <div className="manga-info">
+                  <h3>{manga.title}</h3>
+                  {manga.score && <p>Score: {manga.score}</p>}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
