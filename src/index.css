@@ -19,8 +19,7 @@ nav {
     color: white;
     width: 100%;
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    
 }
 
 .navbar{
@@ -40,4 +39,32 @@ nav {
     font-weight: bold;
 }
 
+
+/*RESPONSIVE NAVBAR*/
+@media (max-width: 786px) {
+    .navbar{
+        padding: 10px 14px;
+    }
+    .links{
+        position: absolute;
+        top: 54px;
+        right: 0;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 16px;
+        gap: 10px;
+        display: none;
+    }
+
+    .links a {
+        padding: 6px 0;
+    }
+
+    .links.open{
+        display: flex;
+    }
+    .navbar-toggle{
+        display: flex;
+    }
+}
 

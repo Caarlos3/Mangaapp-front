@@ -75,7 +75,7 @@ body {
     width: 30px;
     height: 20px;
     position: absolute;
-    background: #cf30aa;
+    background: #ff0000;
     top: 10px;
     left: 5px;
     filter: blur(20px);
@@ -111,10 +111,10 @@ body {
     filter: brightness(1.4);
     background-image: conic-gradient(
       rgba(0, 0, 0, 0) 0%,
-      #a099d8,
+      #ffffff,
       rgba(0, 0, 0, 0) 8%,
       rgba(0, 0, 0, 0) 50%,
-      #dfa2da,
+      #ff0000,
       rgba(0, 0, 0, 0) 58%
     );
     animation: rotate 4s linear infinite;
@@ -143,10 +143,10 @@ body {
     background-position: 0 0;
     background-image: conic-gradient(
       #1c191c,
-      #402fb5 5%,
+      #ff0000 5%,
       #1c191c 14%,
       #1c191c 50%,
-      #cf30aa 60%,
+      #ffffff 60%,
       #1c191c 64%
     );
     animation: rotate 4s 0.1s linear infinite;
@@ -172,10 +172,10 @@ body {
     background-position: 0 0;
     background-image: conic-gradient(
       rgba(0, 0, 0, 0),
-      #18116a,
+      #ff0000,
       rgba(0, 0, 0, 0) 10%,
       rgba(0, 0, 0, 0) 50%,
-      #6e1b60,
+      #ffffff,
       rgba(0, 0, 0, 0) 60%
     );
     transition: all 2s;
@@ -239,10 +239,10 @@ body {
     background-position: 0 0;
     background-image: conic-gradient(
       #000,
-      #402fb5 5%,
+      #ffffff 5%,
       #000 38%,
       #000 50%,
-      #cf30aa 60%,
+      #ff0000 60%,
       #000 87%
     );
     animation: rotate 4s 0.3s linear infinite;
@@ -289,22 +289,26 @@ body {
     padding: 0;
     margin: 1rem 0;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 900px;
     gap: 0.75rem;
   }
   
   .result-item {
     display: flex;
     align-items: center;
+    width: 30%;
     gap: 1rem;
-    padding: 0.75rem;
-    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
     border-radius: 8px;
-    transition: background 0.2s ease;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background 0.3s ease;
   }
   
   .result-item:hover {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(255, 0, 0, 0.226);
+    
   }
   
   .manga-image {

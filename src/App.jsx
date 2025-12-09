@@ -96,12 +96,12 @@ function App() {
                 ></line>
                 <defs>
                   <linearGradient gradientTransform="rotate(50)" id="search">
-                    <stop stopColor="#f8e7f8" offset="0%"></stop>
-                    <stop stopColor="#b6a9b7" offset="50%"></stop>
+                    <stop stopColor="#ffffff" offset="0%"></stop>
+                    <stop stopColor="#ff0000" offset="50%"></stop>
                   </linearGradient>
                   <linearGradient id="searchl">
-                    <stop stopColor="#b6a9b7" offset="0%"></stop>
-                    <stop stopColor="#837484" offset="50%"></stop>
+                    <stop stopColor="#ff0000" offset="0%"></stop>
+                    <stop stopColor="#ffffff" offset="50%"></stop>
                   </linearGradient>
                 </defs>
               </svg>
@@ -111,12 +111,12 @@ function App() {
 
         <div
           className="resultados"
-          style={{ marginTop: "40px", width: "100%", maxWidth: "900px" }}
+          style={{ marginTop: "40px", width: "100%", maxWidth: "900px",  }}
         >
-          <h2 style={{ color: "white" }}>Mangas encontrados</h2>
+          
 
           {loading && (
-            <p style={{ textAlign: "center", color: "#aaa" }}>
+            <p style={{ textAlign: "center", color: "#aaa", fontFamily: "Chokokutai, system-ui" }}>
               Buscando mangas...
             </p>
           )}
@@ -142,7 +142,7 @@ function App() {
                 )}
                 <div className="manga-info">
                   <h3>{manga.title}</h3>
-                  {manga.score && <p>Score: {manga.score}</p>}
+                  {manga.score && <p>Rating: {manga.score}</p>}
                 </div>
               </li>
             ))}

@@ -1,15 +1,29 @@
-import React from "react";
+import {useState} from "react";
 
 export default function Navbar() {
-return(
+    const [open, setOpen] = useState(false);
+    const toggleMenu = () => setOpen((prev) => !prev);
+  return (
     <nav>
-    <div className="navbar">
-    <h1>Manga-bibl</h1>    <div className="links">
-        <a href="/"><i className="fa-regular fa-house"></i></a>
-        <a href="/favorites"><i className="fa-regular fa-heart"></i></a>
-        <a href="/profile"><i className="fa-solid fa-user-ninja"></i></a>
-    </div>
-    </div>
+      <div className="navbar">
+        <h1>Manga-bibl</h1>
+        <div className="navbar-toggle" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className={`links ${open ? "open" : ""}`}>
+          <a href="/">
+            <i className="fa-regular fa-house"></i>
+          </a>
+          <a href="/favorites">
+            <i className="fa-regular fa-heart"></i>
+          </a>
+          <a href="/profile">
+            <i className="fa-solid fa-user-ninja"></i>
+          </a>
+        </div>
+      </div>
     </nav>
-)
-};
+  );
+}
