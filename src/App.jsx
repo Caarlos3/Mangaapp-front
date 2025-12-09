@@ -8,6 +8,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedManga, setSelectedManga] = useState(null);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -34,6 +35,14 @@ function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleMangaClick = (manga) => {
+    setSelectedManga(manga);
+  };
+
+  const closeModal = () => {
+    setSelectedManga(null);
   };
 
   return (
@@ -111,12 +120,16 @@ function App() {
 
         <div
           className="resultados"
-          style={{ marginTop: "40px", width: "100%", maxWidth: "900px",  }}
+          style={{ marginTop: "40px", width: "100%", maxWidth: "900px" }}
         >
-          
-
           {loading && (
-            <p style={{ textAlign: "center", color: "#aaa", fontFamily: "Chokokutai, system-ui" }}>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#aaa",
+                fontFamily: "Chokokutai, system-ui",
+              }}
+            >
               Buscando mangas...
             </p>
           )}
@@ -132,6 +145,7 @@ function App() {
               <li
                 key={manga.malId ?? `${manga.title}-${index}`}
                 className="result-item"
+                onClick={() => handleMangaClick(manga)}
               >
                 {manga.imageUrl && (
                   <img
@@ -149,6 +163,61 @@ function App() {
           </ul>
         </div>
       </div>
+
+      {selectedManga && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              ✕
+            </button>
+
+            <div className="modal-body">
+              <div className="modal-left">
+                {selectedManga.imageUrl && (
+                  <img
+                    src={selectedManga.imageUrl}
+                    alt={selectedManga.title}
+                    className="modal-image"
+                  />
+                )}
+
+                {selectedManga.genres && selectedManga.genres.length > 0 && (
+                  <p className="modal-genres">
+                    {selectedManga.genres.join(", ")}
+                  </p>
+                )}
+              </div>
+
+              <div className="modal-right">
+                <h1 className="modal-title">{selectedManga.title}</h1>
+
+                {selectedManga.synopsis && (
+                  <p className="modal-synopsis">{selectedManga.synopsis}</p>
+                )}
+
+                <p className="modal-meta">
+                  {selectedManga.author && <span>{selectedManga.author}</span>}
+                  {selectedManga.author && selectedManga.year && (
+                    <span> · </span>
+                  )}
+                  {selectedManga.year && <span>{selectedManga.year}</span>}
+                </p>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button
+                className="modal-fav-button"
+                onClick={() => {
+                  console.log("Añadir a favoritos:", selectedManga.title);
+                }}
+              >
+                Leído
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

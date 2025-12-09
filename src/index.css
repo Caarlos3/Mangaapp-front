@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
 }
 body, html {
     margin: 0;
@@ -15,7 +16,7 @@ body, html {
 }
 
 nav {
-    background-color: #333;
+    background-color: #000000;
     color: white;
     width: 100%;
     box-sizing: border-box;

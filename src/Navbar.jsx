@@ -17,7 +17,7 @@ export default function Navbar() {
             <i className="fa-regular fa-house"></i>
           </a>
           <a href="/favorites">
-            <i className="fa-regular fa-heart"></i>
+          <i class="fa-solid fa-book"></i>
           </a>
           <a href="/profile">
             <i className="fa-solid fa-user-ninja"></i>
