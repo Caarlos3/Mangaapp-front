@@ -80,62 +80,24 @@ function Home() {
       >
         <div className="grid"></div>
 
-        <form id="poda" onSubmit={handleSearch}>
-          <div className="glow"></div>
-          <div className="darkBorderBg"></div>
-          <div className="darkBorderBg"></div>
-          <div className="darkBorderBg"></div>
+        <form onSubmit={handleSearch}>
+          <div className="manga-search-container">
+            <div className="sound-effect left">ドキドキ</div>
+            <div className="sound-effect right">キラキラ</div>
 
-          <div className="white"></div>
-          <div className="border"></div>
-
-          <div id="main">
-            <input
-              placeholder="Search..."
-              type="text"
-              name="text"
-              className="input"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <div id="input-mask"></div>
-            <div id="pink-mask"></div>
-
-            <div
-              id="search-icon"
-              onClick={handleSearch}
-              style={{ cursor: "pointer" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                height="24"
-                fill="none"
-                className="feather feather-search"
-              >
-                <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
-                <line
-                  stroke="url(#searchl)"
-                  y2="16.65"
-                  y1="22"
-                  x2="16.65"
-                  x1="22"
-                ></line>
-                <defs>
-                  <linearGradient gradientTransform="rotate(50)" id="search">
-                    <stop stopColor="#ffffff" offset="0%"></stop>
-                    <stop stopColor="#ff0000" offset="50%"></stop>
-                  </linearGradient>
-                  <linearGradient id="searchl">
-                    <stop stopColor="#ff0000" offset="0%"></stop>
-                    <stop stopColor="#ffffff" offset="50%"></stop>
-                  </linearGradient>
-                </defs>
-              </svg>
+            <div className="speech-bubble">
+              <div className="emphasis-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <input
+                type="text"
+                className="manga-input"
+                placeholder="Encuentra tu manga..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
             </div>
           </div>
         </form>

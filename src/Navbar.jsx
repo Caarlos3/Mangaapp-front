@@ -10,7 +10,10 @@ export default function Navbar() {
       <div className="navbar">
         <h1>Manga-bibl</h1>
 
-        <div className="navbar-toggle" onClick={toggleMenu}>
+        <div 
+          className={`navbar-toggle ${open ? "active" : ""}`} 
+          onClick={toggleMenu}
+        >
           <span></span>
           <span></span>
           <span></span>
