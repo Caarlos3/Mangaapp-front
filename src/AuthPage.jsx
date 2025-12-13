@@ -62,7 +62,7 @@ export default function AuthPage() {
   return (
     <div className="modal-overlay">
       <div className="modal-content auth-container">
-        <h1 className="modal-title auth-title">
+        <h1 className="modal-title auth-title" style={{ fontFamily: "Play, sans-serif" }}>
           {mode === "login" ? "Iniciar Sesión" : "Registrarse"}
         </h1>
 
@@ -81,7 +81,7 @@ export default function AuthPage() {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ fontFamily: "Play, sans-serif" }}>
           <div className="auth-input-group">
             <label className="auth-label">Email</label>
             <input
