@@ -80,84 +80,65 @@ function Home() {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          margin: "100px",
-          alignItems: "center",
-          height: "100vh",
-          flexDirection: "column",
-        }}
-      >
-        <div className="grid"></div>
+      <main className="page-container">
+        <div className="page-inner">
+          <div className="grid"></div>
 
-        <form onSubmit={handleSearch}>
-          <div className="manga-search-container">
-            <div className="sound-effect left">ドキドキ</div>
-            <div className="sound-effect right">キラキラ</div>
+          <form onSubmit={handleSearch}>
+            <div className="manga-search-container">
+              <div className="sound-effect left">ドキドキ</div>
+              <div className="sound-effect right">キラキラ</div>
 
-            <div className="speech-bubble">
-              <div className="emphasis-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <input
-                type="text"
-                className="manga-input"
-                placeholder="Encuentra tu manga..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </div>
-          </div>
-        </form>
-
-        <div
-          className="resultados"
-          style={{ marginTop: "40px", width: "100%", maxWidth: "900px" }}
-        >
-          {loading && (
-            <p
-              style={{
-                textAlign: "center",
-                color: "#aaa",
-                fontFamily: "Chokokutai, system-ui",
-              }}
-            >
-              Buscando mangas...
-            </p>
-          )}
-
-          {error && (
-            <p style={{ textAlign: "center", color: "tomato" }}>
-              Error: {error}
-            </p>
-          )}
-
-          <ul className="results-list">
-            {results.map((manga, index) => (
-              <li
-                key={manga.malId ?? `${manga.title}-${index}`}
-                className="result-item"
-                onClick={() => handleMangaClick(manga)}
-              >
-                {manga.imageUrl && (
-                  <img
-                    src={manga.imageUrl}
-                    alt={manga.title}
-                    className="manga-image"
-                  />
-                )}
-                <div className="manga-info">
-                  <h3>{manga.title}</h3>
-                  {manga.score && <p>Rating: {manga.score}</p>}
+              <div className="speech-bubble">
+                <div className="emphasis-lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
-              </li>
-            ))}
-          </ul>
+                <input
+                  type="text"
+                  className="manga-input"
+                  placeholder="Encuentra tu manga..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+            </div>
+          </form>
+
+          <div className="resultados">
+            {loading && (
+              <p className="loading-text">Buscando mangas...</p>
+            )}
+
+            {error && (
+              <p className="error-text">Error: {error}</p>
+            )}
+
+            <ul className="results-list">
+              {results.map((manga, index) => (
+                <li
+                  key={manga.malId ?? `${manga.title}-${index}`}
+                  className="result-item"
+                  onClick={() => handleMangaClick(manga)}
+                >
+                  {manga.imageUrl && (
+                    <img
+                      src={manga.imageUrl}
+                      alt={manga.title}
+                      className="manga-image"
+                    />
+                  )}
+                  <div className="manga-info">
+                    <h3>{manga.title}</h3>
+                    {manga.score && <p>Rating: {manga.score}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </main>
 
       {selectedManga && (
         <div className="modal-overlay" onClick={closeModal}>

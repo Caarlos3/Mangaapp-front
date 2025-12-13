@@ -1,5 +1,37 @@
-body {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
   background-color: #000000;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 20px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000000;
+}
+
+.page-inner {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
 }
 
 .grid {
@@ -10,7 +42,7 @@ body {
   filter: blur(1px);
 }
 
-/* Estilos del nuevo input manga */
+/* INPUT MANGA ANIMADO */
 .manga-search-container {
   position: relative;
   width: 100%;
@@ -36,7 +68,6 @@ body {
   }
 }
 
-/* Cola del bocadillo */
 .speech-bubble::before {
   content: '';
   position: absolute;
@@ -61,7 +92,6 @@ body {
   border-top: 28px solid white;
 }
 
-/* Líneas de énfasis manga */
 .emphasis-lines {
   position: absolute;
   top: -20px;
@@ -119,7 +149,6 @@ body {
   font-style: italic;
 }
 
-/* Efecto de escritura */
 .manga-input:focus {
   animation: shake 0.3s;
 }
@@ -130,7 +159,6 @@ body {
   75% { transform: translateX(2px); }
 }
 
-/* Efectos de sonido manga */
 .sound-effect {
   position: absolute;
   font-size: 24px;
@@ -164,22 +192,45 @@ body {
   }
 }
 
-/*Resultados styles*/
+/* RESULTADOS */
+.resultados {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-text {
+  text-align: center;
+  color: #aaa;
+  font-family: "Play", sans-serif;
+  font-size: 1.1rem;
+}
+
+.error-text {
+  text-align: center;
+  color: tomato;
+  font-size: 1rem;
+}
 
 .results-list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  max-width: 900px;
+  justify-content: center;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .result-item {
   display: flex;
   align-items: center;
-  width: 30%;
+  width: calc(33.333% - 0.5rem);
+  min-width: 260px;
+  max-width: 300px;
   gap: 1rem;
   padding: 0.5rem;
   border-radius: 8px;
@@ -205,6 +256,11 @@ body {
   height: 90px;
   object-fit: cover;
   border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.manga-info {
+  flex: 1;
 }
 
 .manga-info h3 {
@@ -219,8 +275,7 @@ body {
   color: rgba(255, 252, 67, 0.965);
 }
 
-/*Modal styles*/
-
+/* MODAL */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -353,8 +408,16 @@ body {
   box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7);
 }
 
-/* Responsive para tablets */
+/* RESPONSIVE TABLET */
 @media (max-width: 1024px) {
+  .page-container {
+    padding: 60px 16px 32px;
+  }
+
+  .result-item {
+    width: calc(50% - 0.5rem);
+  }
+
   .modal-content {
     max-width: 95%;
   }
@@ -368,8 +431,58 @@ body {
   }
 }
 
-/* Responsive para móviles */
+/* RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
+  .page-container {
+    padding: 40px 12px 24px;
+  }
+
+  .page-inner {
+    gap: 1.5rem;
+  }
+
+  .manga-search-container {
+    max-width: 100%;
+    padding: 0 8px;
+  }
+
+  .speech-bubble {
+    padding: 20px 30px;
+  }
+
+  .sound-effect {
+    display: none;
+  }
+
+  .results-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .result-item {
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .manga-image {
+    width: 150px;
+    height: 225px;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .manga-info p {
+    font-size: 1rem;
+  }
+
   .modal-overlay {
     padding: 0.5rem;
     align-items: flex-start;
@@ -445,52 +558,31 @@ body {
     top: 0.5rem;
     right: 0.5rem;
   }
+}
 
-  .sound-effect {
-    display: none;
+/* RESPONSIVE MÓVIL PEQUEÑO */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 32px 8px 20px;
   }
 
-  .manga-search-container {
-    max-width: 90%;
+  .speech-bubble {
+    padding: 16px 24px;
   }
 
-  /* Responsive para los resultados de manga */
-  .results-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  .manga-input {
+    font-size: 16px;
   }
 
   .result-item {
-    flex-direction: column;
-    width: 90%;
-    max-width: 300px;
-    text-align: center;
-    padding: 1rem;
+    max-width: 320px;
   }
 
   .manga-image {
-    width: 150px;
-    height: 225px;
-    margin-bottom: 0.5rem;
+    width: 130px;
+    height: 195px;
   }
 
-  .manga-info {
-    width: 100%;
-  }
-
-  .manga-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .manga-info p {
-    font-size: 1rem;
-  }
-}
-
-/* Responsive para móviles pequeños */
-@media (max-width: 480px) {
   .modal-overlay {
     padding: 0.25rem;
     padding-top: 1rem;
