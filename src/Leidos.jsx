@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
 import "./Leidos.css";
 
 const API_BASE_URL = "https://mymangapp-backend-production.up.railway.app";
@@ -8,15 +9,23 @@ export default function Leidos() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
+
   const fetchLeidos = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/leidos`);
+      const response = await fetch(`${API_BASE_URL}/api/leidos`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       if (!response.ok) {
         throw new Error("Error al obtener los mangas leídos");
       }
+
       const data = await response.json();
       setLeidos(data);
     } catch (err) {
@@ -35,10 +44,15 @@ export default function Leidos() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/leidos/${malId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       if (!response.ok && response.status !== 204) {
         throw new Error("Error al eliminar el manga leído");
       }
+
       setLeidos((prev) => prev.filter((manga) => manga.malId !== malId));
     } catch (err) {
       console.error(err);
@@ -48,11 +62,13 @@ export default function Leidos() {
 
   return (
     <div className="leidos-container">
-      <h2 style={{color: "red"}}>MANGAS LEÍDOS</h2>
+      <h2 style={{ color: "red" }}>MANGAS LEÍDOS</h2>
       {loading && <p>Cargando mangas leídos...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !error && leidos.length === 0 && (
-        <p style={{color: "white", marginTop: "30px"}}>Upss... todavía no has leído nada</p>
+        <p style={{ color: "white", marginTop: "30px" }}>
+          Upss... todavía no has leído nada
+        </p>
       )}
 
       <ul className="leidos-list">

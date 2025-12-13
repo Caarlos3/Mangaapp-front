@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 const API_BASE_URL = "https://mymangapp-backend-production.up.railway.app";
 
@@ -9,6 +10,8 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedManga, setSelectedManga] = useState(null);
+
+  const { token, isAuthenticated } = useAuth();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -39,18 +42,26 @@ function Home() {
 
   const handleAddLeido = async () => {
     if (!selectedManga) return;
-    
+
+    if (!isAuthenticated) {
+      alert("Debes iniciar sesión para marcar como leído.");
+      return;
+    }
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/leidos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(selectedManga),
       });
+
       if (!response.ok) {
         throw new Error("Error al añadir el manga leído");
       }
+
       alert("Manga añadido a leídos");
       closeModal();
     } catch (err) {
@@ -190,10 +201,7 @@ function Home() {
             </div>
 
             <div className="modal-footer">
-              <button
-                className="modal-fav-button"
-                onClick={handleAddLeido}
-              >
+              <button className="modal-fav-button" onClick={handleAddLeido}>
                 Leído
               </button>
             </div>
