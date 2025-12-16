@@ -1,20 +1,22 @@
-# Manga-bibl Backend
+# Manga-bibl Frontend
 
-Backend de la aplicación Manga Library desarrollado con Java 25 y Spring Boot.  
-Proporciona una API RESTful para buscar mangas usando la API externa de Jikan (MyAnimeList) y gestionar datos relacionados.
+Frontend de la aplicación Manga-bibl desarrollado con React.  
+Permite buscar mangas, visualizar resultados con imágenes, y mostrar detalles en modales interactivos.
 
 ## Tecnologías
 
-- Java 21
-- Spring Boot
-- Maven
-- Jackson (para parseo JSON)
-- Spring Web (REST API)
-- Configuración CORS para comunicación con frontend
+- React 18+
+- JavaScript (ES6+)
+- CSS3 (Flexbox, Media Queries)
+- Fetch API para consumir backend
+- Animaciones CSS (keyframes)
+- Despliegue en Vercel
 
 ## Funcionalidades
 
-- Endpoint para buscar mangas por título, consumiendo la API de Jikan.
-- Parseo y transformación de datos JSON para devolver solo la información necesaria.
-- Configuración CORS para permitir peticiones desde el frontend.
-- Estructura modular para fácil extensión y mantenimiento.
+- Buscador de mangas con autocompletado básico.
+- Visualización de resultados con imágenes y títulos.
+- Modal para mostrar detalles ampliados del manga.
+- Carrusel animado con imágenes de mangas populares.
+- Fondo animado con nubes estilo Akatsuki.
+- Diseño responsive para móviles y escritorio.
