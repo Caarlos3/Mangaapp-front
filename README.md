@@ -1,16 +1,20 @@
-# React + Vite
+# Manga-bibl Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Backend de la aplicación Manga Library desarrollado con Java 25 y Spring Boot.  
+Proporciona una API RESTful para buscar mangas usando la API externa de Jikan (MyAnimeList) y gestionar datos relacionados.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Java 21
+- Spring Boot
+- Maven
+- Jackson (para parseo JSON)
+- Spring Web (REST API)
+- Configuración CORS para comunicación con frontend
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Endpoint para buscar mangas por título, consumiendo la API de Jikan.
+- Parseo y transformación de datos JSON para devolver solo la información necesaria.
+- Configuración CORS para permitir peticiones desde el frontend.
+- Estructura modular para fácil extensión y mantenimiento.
